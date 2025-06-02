@@ -16,6 +16,7 @@ import useStyles from './styles';
 const List = ({ places, childClicked, isLoading, type, setType, rating, setRating }) => {
   const classes = useStyles();
 
+  // Creeaza referinte pentru fiecare item din lista
   const elRefs = useMemo(
     () => Array(places?.length).fill().map(() => React.createRef()),
     [places]
@@ -28,11 +29,13 @@ const List = ({ places, childClicked, isLoading, type, setType, rating, setRatin
       </Typography>
 
       {isLoading ? (
+        // Afiseaza loader daca datele sunt inca in curs de incarcare
         <div className={classes.loading}>
           <CircularProgress size="5rem" />
         </div>
       ) : (
         <>
+          {/* Filtru pentru tipul locatiei */}
           <FormControl className={classes.formControl}>
             <InputLabel>Type</InputLabel>
             <Select value={type} onChange={(e) => setType(e.target.value)}>
@@ -42,6 +45,7 @@ const List = ({ places, childClicked, isLoading, type, setType, rating, setRatin
             </Select>
           </FormControl>
 
+          {/* Filtru pentru rating */}
           <FormControl className={classes.formControl}>
             <InputLabel>Rating</InputLabel>
             <Select value={rating} onChange={(e) => setRating(e.target.value)}>
@@ -52,6 +56,7 @@ const List = ({ places, childClicked, isLoading, type, setType, rating, setRatin
             </Select>
           </FormControl>
 
+          {/* Lista locatiilor */}
           {places?.length > 0 ? (
             <Grid container spacing={3} className={classes.list}>
               {places.map((place, i) => (
@@ -65,6 +70,7 @@ const List = ({ places, childClicked, isLoading, type, setType, rating, setRatin
               ))}
             </Grid>
           ) : (
+            // Mesaj afisat daca nu exista rezultate
             <Box mt={2}>
               <Typography variant="subtitle1" color="textSecondary">
                 Niciun rezultat găsit pentru filtrul selectat.

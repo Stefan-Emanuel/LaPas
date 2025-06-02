@@ -18,10 +18,12 @@ import useStyles from './styles';
 const PlaceDetails = ({ place, selected, refProp }) => {
   const classes = useStyles();
 
+  // Deruleaza automat spre cardul selectat pe harta
   if (selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   return (
-    <Card elevation={6}>
+    <Card elevation={3} style={{ borderRadius: 12, boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
+      {/* Imagine principala */}
       <CardMedia
         style={{ height: 350 }}
         image={place?.photo?.images?.large?.url || 'https://pluspng.com/img-png/restaurant-png-hd--1920.png'}
@@ -29,10 +31,12 @@ const PlaceDetails = ({ place, selected, refProp }) => {
       />
 
       <CardContent>
+        {/* Numele locatiei */}
         <Typography gutterBottom variant="h5">
           {place?.name || "No Name"}
         </Typography>
 
+        {/* Ratingul locatiei */}
         <Box display="flex" justifyContent="space-between" my={1}>
           <Rating size="small" value={Number(place?.rating) || 0} readOnly />
           <Typography variant="subtitle1" component="p">
@@ -40,6 +44,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           </Typography>
         </Box>
 
+        {/* Pret si ranking, daca exista */}
         {place?.price_level && (
           <Box display="flex" justifyContent="space-between">
             <Typography variant="subtitle1">Price</Typography>
@@ -54,6 +59,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           </Box>
         )}
 
+        {/* Afiseaza premii (daca exista) */}
         {place?.awards?.map((award, i) => (
           <Box key={i} my={1} display="flex" alignItems="center" gap={1}>
             {award?.images?.small && (
@@ -65,6 +71,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           </Box>
         ))}
 
+        {/* Lista de tipuri de bucatarie */}
         {place?.cuisine?.map(({ name }) => (
           <Chip
             key={name}
@@ -74,6 +81,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           />
         ))}
 
+        {/* Adresa locatiei */}
         {place?.address && (
           <Typography
             gutterBottom
@@ -85,6 +93,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           </Typography>
         )}
 
+        {/* Numar de telefon */}
         {place?.phone && (
           <Typography
             gutterBottom
@@ -96,6 +105,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           </Typography>
         )}
 
+        {/* Butoane catre site-uri externe */}
         <CardActions>
           {place?.web_url && (
             <Button

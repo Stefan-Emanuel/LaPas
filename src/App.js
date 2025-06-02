@@ -8,16 +8,19 @@ import Map from "./components/Map/Map";
 import { getPlacesData } from "./api";
 
 const App = () => {
+  // Lista locatiilor afisate (restaurante, hoteluri, atractii)
   const [places, setPlaces] = useState([]);
   const [childClicked, setChildClicked] = useState(null);
 
-  const [coordinates, setCoordinates] = useState({ lat: 48.8566, lng: 2.3522 }); // Paris default
+  // Coordonate pentru harta (default: Paris)
+  const [coordinates, setCoordinates] = useState({ lat: 48.8566, lng: 2.3522 });
   const [bounds, setBounds] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState("restaurants");
   const [rating, setRating] = useState("");
 
+  // Filtrare dupa rating (evitam locatii fara rating sau cu scor mic)
   const filteredPlaces = useMemo(() => {
     if (!rating || Number(rating) === 0) return places;
 
@@ -31,22 +34,22 @@ const App = () => {
   }, [places, rating]);
 
   useEffect(() => {
-    // Geolocation disabled (Paris default)
+    // Cod pentru geolocatie (dezactivat, folosesc Paris default)
     /*
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
-        console.log("📍 Geolocation:", latitude, longitude);
         setCoordinates({ lat: latitude, lng: longitude });
       },
-      (err) => console.warn("⚠️ Geolocation denied, using default.")
+      () => console.warn("Geolocatie refuzata, se foloseste default.")
     );
     */
   }, []);
 
   useEffect(() => {
+    // Daca nu exista locatii care sa respecte filtrul -> resetam filtrul dupa cateva secunde
     if (filteredPlaces.length === 0 && places.length > 0 && Number(rating) > 0) {
       const timeout = setTimeout(() => {
-        console.warn("⚠️ Nicio locație nu corespunde filtrului. Resetăm ratingul...");
+        console.warn("Nicio locatie gasita. Resetam filtrul de rating...");
         setRating("");
       }, 2500);
       return () => clearTimeout(timeout);
@@ -54,29 +57,26 @@ const App = () => {
   }, [filteredPlaces, rating, places]);
 
   useEffect(() => {
+    // Cand avem coordonate si bounds, cerem datele din API
     if (bounds.sw && bounds.ne && coordinates.lat && coordinates.lng) {
-      console.log("🗺️ Bounds received:", bounds);
-      console.log("📌 Coordinates:", coordinates);
       setIsLoading(true);
 
       getPlacesData(type, bounds.sw, bounds.ne)
+      
         .then((data) => {
-          console.log("🔍 Date brute din API:", data);
-
+          // Pastram doar locatiile cu nume si cel putin un review
           const cleanData = data?.filter((place) =>
             place.name && place.num_reviews > 0
           );
 
-          console.log("🧹 Date curățate:", cleanData);
           setPlaces(cleanData || []);
           setIsLoading(false);
         })
         .catch((err) => {
-          console.error("❌ Eroare la getPlacesData:", err);
+          console.error("Eroare la getPlacesData:", err);
           setIsLoading(false);
         });
-    } else {
-      console.log("⏳ Aștept coordonate și bounds pentru apelul API...");
+        
     }
   }, [type, bounds]);
 

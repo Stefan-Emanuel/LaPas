@@ -9,8 +9,10 @@ const Header = ({ setCoordinates }) => {
   const classes = useStyles();
   const [autocomplete, setAutocomplete] = useState(null);
 
+  // Salvare instanta autocomplete cand se incarca
   const onLoad = (autoC) => setAutocomplete(autoC);
 
+  // Preia coordonatele locatiei cautate si le trimite mai departe
   const onPlaceChanged = () => {
     if (autocomplete) {
       const place = autocomplete.getPlace();
@@ -23,15 +25,26 @@ const Header = ({ setCoordinates }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{
+  background: 'linear-gradient(to right, #87CEEB, #50a2d3)'
+}}>
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h5" className={classes.title}>
-          LaPas
-        </Typography>
+        <Box display="flex" alignItems="center">
+  <img
+    src="/favicon.png" 
+    alt="logo"
+    style={{ height: 90, marginRight: 12, borderRadius: 8 }}
+  />
+  <Typography variant="h5" className={classes.title}>
+    LaPas
+  </Typography>
+</Box>
         <Box display="flex">
           <Typography variant="h6" className={classes.title}>
             Viziteaza Locuri Noi
           </Typography>
+
+          {/* Cautare cu autocomplete pe harta Google */}
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
