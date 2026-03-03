@@ -59,3 +59,8 @@ This application demonstrates:
 - Modern React state management
 - UI scalability
 - Real-world application architecture
+
+  Preview:
+
+  <img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/4b5f6397-bcb7-4465-89a0-145d3ccebe21" />
+
