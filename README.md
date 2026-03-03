@@ -4,13 +4,13 @@ LaPas este o aplicație web interactivă ce permite utilizatorilor să descopere
 
 ---
 
-🎯 Scopul aplicației
+Scopul aplicației
 
 Această aplicație a fost dezvoltată ca parte a unei lucrări de disertație și are ca obiectiv principal integrarea unor tehnologii moderne din ecosistemul JavaScript pentru a oferi o experiență de navigare intuitivă, scalabilă și adaptată nevoilor turismului digital.
 
 ---
 
-🧰 Tehnologii utilizate
+ Tehnologii utilizate
 
 Proiectul este construit folosind următorul stack de tehnologii:
 
@@ -24,7 +24,7 @@ Proiectul este construit folosind următorul stack de tehnologii:
 
 ---
 
-▶️ Instrucțiuni pentru rulare locală
+Instrucțiuni pentru rulare locală
 
 1.  Clonarea proiectului
 
@@ -52,7 +52,7 @@ Aplicația va fi disponibilă în browser la adresa:
 
 http://localhost:3000
 
-🧰 Cerințe de sistem:
+ Cerințe de sistem:
 
 Node.js ≥ 14.x
 Acces la internet (pentru interogarea API-urilor)
