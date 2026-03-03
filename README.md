@@ -1,59 +1,61 @@
-# LaPas – Aplicație web pentru explorarea locațiilor turistice
+ LaPas – Web Application for Exploring Tourist Locations
+ 
+LaPas is an interactive web application that enables users to discover restaurants, hotels, and tourist attractions within a selected geographic area using an interactive Google Map and smart filtering based on type and rating.
 
-LaPas este o aplicație web interactivă ce permite utilizatorilor să descopere restaurante, hoteluri și atracții turistice într-o anumită zonă geografică, folosind o hartă interactivă Google și filtre inteligente în funcție de tip și rating.
+ Academic Context
+ 
+This project was developed as part of my Master’s Degree Dissertation.
+The main objective of the application is to integrate modern technologies from the JavaScript ecosystem in order to deliver an intuitive, scalable, and user-friendly experience tailored to digital tourism needs.
 
----
+Features
 
-Scopul aplicației
+- Interactive Google Map integration
+- Dynamic filtering by category (restaurants, hotels, attractions)
+- Rating-based filtering
+- Real-time API data fetching
+- Responsive and modern UI
+- Optimized API calls using debouncing
 
-Această aplicație a fost dezvoltată ca parte a unei lucrări de disertație și are ca obiectiv principal integrarea unor tehnologii moderne din ecosistemul JavaScript pentru a oferi o experiență de navigare intuitivă, scalabilă și adaptată nevoilor turismului digital.
+ Tech Stack
+The project was built using the following technologies:
 
----
-
- Tehnologii utilizate
-
-Proiectul este construit folosind următorul stack de tehnologii:
-
-- **React.js** – Biblioteca principală pentru dezvoltarea interfeței
-- **Google Maps JavaScript API** – Pentru afișarea hărții interactive
-- **RapidAPI – Travel Advisor API** – Pentru obținerea de date turistice (restaurante, hoteluri, atracții)
-- **Material-UI** – Pentru stilizarea componentelor
-- **Axios** – Pentru apeluri HTTP asincrone
-- **Lodash.debounce** – Pentru optimizarea apelurilor API
-- **HTML5 + CSS3 + JavaScript (ES6+)**
-
----
-
-Instrucțiuni pentru rulare locală
-
-1.  Clonarea proiectului
-
-```bash
+- React.js – Front-end framework
+- Google Maps JavaScript API – Interactive map integration
+- RapidAPI – Travel Advisor API – Tourist data provider
+- Material-UI (MUI) – UI component styling
+- Axios – Asynchronous HTTP requests
+- Lodash.debounce – API call optimization
+- HTML5, CSS3, JavaScript (ES6+)
+  
+ Installation & Local Setup
+1 . Clone the repository
 git clone https://github.com/Stefan-Emanuel/LaPas
 cd LaPas
-```
 
-2. Instalarea dependențelor
-   bash
-   npm install
+2. Install dependencies
+npm install
 
-3. Configurarea fișierului .env
-   Creează un fișier .env în rădăcina proiectului și adaugă următoarele variabile (cheile trebuie generate din conturile tale de pe RapidAPI și Google Cloud):
-
-REACT_APP_GOOGLE_MAPS_API_KEY=cheia_ta_google
-REACT_APP_RAPIDAPI_KEY=cheia_ta_rapidapi
+3. Environment Configuration
+Create a .env file in the root directory of the project and add the following variables (you must generate your own API keys from Google Cloud and RapidAPI):
+REACT_APP_GOOGLE_MAPS_API_KEY=your_google_api_key
+REACT_APP_RAPIDAPI_KEY=your_rapidapi_key
 REACT_APP_RAPIDAPI_HOST=travel-advisor.p.rapidapi.com
 
-4. Pornirea aplicației
-   bash
-   npm start
-
-Aplicația va fi disponibilă în browser la adresa:
-
+5. Run the application
+npm start
+The application will be available at:
 http://localhost:3000
 
- Cerințe de sistem:
-
-Node.js ≥ 14.x
-Acces la internet (pentru interogarea API-urilor)
-Chei API valide pentru Google Maps și RapidAPI
+System Requirements
+- Node.js ≥ 14.x
+- Internet connection (for API requests)
+- Valid Google Maps API Key
+- Valid RapidAPI Key
+  
+ Project Purpose
+This application demonstrates:
+- Integration of third-party APIs
+- Geolocation-based filtering
+- Modern React state management
+- UI scalability
+- Real-world application architecture
